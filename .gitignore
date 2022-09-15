@@ -1,0 +1,15 @@
+# https://github.com/spidermedic/tolls
+ipynb_checkpoints/
+__pycache__/
+include/
+share/
+lib/
+bin/
+pyvenv.cfg 
+*.json
+*.ipynb
+*.xlsx
+get_creds.py 
+get_tolls.py 
+parse_tolls.py 
+ezpass.py
