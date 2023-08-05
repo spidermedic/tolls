@@ -24,42 +24,24 @@ def main():
 
 def get_creds():
 
-    creds = None
-
     # Check to see if there is a token file and load the credentials
     if os.path.exists("token.json"):
         creds = Credentials.from_authorized_user_file("token.json", SCOPES)
         print("\nToken found.")
+    else:
+        creds = None
 
-    if not creds or not creds.valid:
-        # Check whether the credentials are expired
-        if creds and creds.expired and creds.refresh_token:
-            print("Token expired, attempting refresh.")
-            try:
-                # If expired, request a new token
-                creds.refresh(Request())
-                # Write the refresh token to a file 
-                with open("token.json", "w") as token:
-                    token.write(creds.to_json())  
-                    print("-Token refresh successful.")
-            except:
-                print("Token refresh failed, requesting new token.")
-                # If the refresh request fails, start an authorization flow
-                flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
-                creds = flow.run_local_server(port=0)
-                # Write the token to a file
-                with open("token.json", "w") as token:
-                    token.write(creds.to_json())
-                    print("\nToken saved.")     
-        # If there are no credentials, start an authorization flow
-        else:
-            print("\nNo token found, starting authorization flow\n")
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
-            creds = flow.run_local_server(port=0)
-            # Write the token to a file
-            with open("token.json", "w") as token:
-                token.write(creds.to_json())
-                print("\nToken saved.")     
+    if creds and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+
+    if not creds:
+        flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+        creds = flow.run_local_server(port=0)
+        # Write the token to a file
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+            print("\nToken saved.")     
+
 
     return build("calendar", "v3", credentials=creds)
 
