@@ -1,0 +1,17 @@
+# github.com:spidermedic/tolls.git
+ipynb_checkpoints/
+__pycache__/
+include/
+share/
+lib/
+bin/
+ezpass.py
+pyvenv.cfg 
+*.json
+*.ipynb
+*.xlsx
+*.icloud
+get_creds.py 
+get_tolls.py 
+parse_tolls.py
+.DS_Store

@@ -1,0 +1,11 @@
+google-api-core==2.10.1
+google-api-python-client==2.61.0
+google-auth==2.11.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.5.3
+googleapis-common-protos==1.56.4
+numpy==1.22.3
+oauthlib==3.2.0
+openpyxl==3.0.10
+pandas==1.4.1
+playwright==1.25.2
